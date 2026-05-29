@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Пенсионный калькулятор</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input,
+        textarea,
+        button {
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 12px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="radio"] {
+            border-radius: 50%;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        button {
+            background-color: #2c5f8a;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #1e3e5c;
+        }
+
+        textarea {
+            border-radius: 12px;
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Пенсионный калькулятор</h1>
+
+    <form id="pensionForm" onsubmit="calculatePension(); return false;">
+        <div class="form-group">
+            <label for="age">Возраст:</label>
+            <input type="number" id="age" name="age" min="0" required>
+        </div>
+
+        <div class="form-group">
+            <label>Пол:</label>
+            <div class="radio-group">
+                <label class="radio-option" for="male">
+                    <input type="radio" id="male" name="gender" value="male" required> Мужской
+                </label>
+                <label class="radio-option" for="female">
+                    <input type="radio" id="female" name="gender" value="female" required> Женский
+                </label>
+            </div>
+        </div>
+
+        <button>Рассчитать</button>
+
+        <div class="form-group">
+            <label for="result">Результат:</label>
+            <textarea id="result" rows="3" readonly></textarea>
+        </div>
+    </form>
+
+    <script>
+        'use strict';
+        function calculatePension() {
+            const age = parseInt(document.getElementById("age").value);
+            const gender = document.querySelector('input[name="gender"]:checked')?.value;
+
+            const resultTextarea = document.getElementById("result");
+
+            let message = "";
+
+            if (age >= 0 && age <= 17) {
+                message = "Вам работать ещё рано — учитесь";
+            } else if (gender === "male" && age >= 18 && age <= 59) {
+                message = "Вам ещё работать и работать";
+            } else if (gender === "female" && age >= 18 && age <= 54) {
+                message = "Вам ещё работать и работать";
+            } else if (gender === "male" && age >= 60 && age <= 64) {
+                message = "Скоро пенсия!";
+            } else if (gender === "female" && age >= 55 && age <= 59) {
+                message = "Скоро пенсия!";
+            } else if (gender === "male" && age >= 65) {
+                message = "Вам пора на пенсию";
+            } else if (gender === "female" && age >= 60) {
+                message = "Вам пора на пенсию";
+            } else {
+                message = "Да кто ты такой?";
+            }
+
+            resultTextarea.value = message;
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шахматная доска</title>
+    <style>
+    table {
+        background:white;
+        font-size:88%;
+        border:1px #b0b0b0 solid;
+        padding:0;
+        margin:auto;
+        border-spacing: 0;
+    }
+    </style>
+</head>
+
+<body>
+    <table
+        style="background:white;font-size:88%;border:1px #b0b0b0 solid;padding:0;margin:auto">
+        <tbody style="vertical-align:middle;text-align:center;">
+            <tr>
+                <td style="vertical-align:inherit;padding:0"></td>
+                <td style="padding:0;vertical-align:inherit;height:18px;width:26px">a</td>
+                <td style="padding:0;vertical-align:inherit;height:18px;width:26px">b</td>
+                <td style="padding:0;vertical-align:inherit;height:18px;width:26px">c</td>
+                <td style="padding:0;vertical-align:inherit;height:18px;width:26px">d</td>
+                <td style="padding:0;vertical-align:inherit;height:18px;width:26px">e</td>
+                <td style="padding:0;vertical-align:inherit;height:18px;width:26px">f</td>
+                <td style="padding:0;vertical-align:inherit;height:18px;width:26px">g</td>
+                <td style="padding:0;vertical-align:inherit;height:18px;width:26px">h</td>
+                <td style="vertical-align:inherit;padding:0"></td>
+            </tr>
+            <tr>
+                <td style="padding:0;vertical-align:inherit;width:18px;height:26px">8</td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♜</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♞</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♝</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♛</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♚</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♝</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♞</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♜</div>
+                </td>
+                <td style="padding:0;vertical-align:inherit;width:18px;height:26px">8</td>
+            </tr>
+            <tr style="vertical-align:middle">
+                <td style="padding:0;vertical-align:inherit;height:26px">7</td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♟</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♟</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♟</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♟</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♟</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♟</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♟</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♟</div>
+                </td>
+                <td style="padding:0;vertical-align:inherit;height:26px">7</td>
+            </tr>
+            <tr>
+                <td style="padding:0;vertical-align:inherit;height:26px">6</td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="padding:0;vertical-align:inherit;height:26px">6</td>
+            </tr>
+            <tr>
+                <td style="padding:0;vertical-align:inherit;height:26px">5</td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="padding:0;vertical-align:inherit;height:26px">5</td>
+            </tr>
+            <tr>
+                <td style="padding:0;vertical-align:inherit;height:26px">4</td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="padding:0;vertical-align:inherit;height:26px">4</td>
+            </tr>
+            <tr>
+                <td style="padding:0;vertical-align:inherit;height:26px">3</td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="position:relative"><div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;"></div></td>
+                <td style="padding:0;vertical-align:inherit;height:26px">3</td>
+            </tr>
+            <tr>
+                <td style="padding:0;vertical-align:inherit;height:26px">2</td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♙</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♙</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♙</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♙</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♙</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♙</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♙</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♙</div>
+                </td>
+                <td style="padding:0;vertical-align:inherit;height:26px">2</td>
+            </tr>
+            <tr>
+                <td style="padding:0;vertical-align:inherit;height:26px">1</td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♖</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♘</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♗</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♕</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♔</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♗</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♘</div>
+                </td>
+                <td style="position:relative">
+                    <div style="position:absolute;z-index:3;top:0px;left:0px;width:26px;height:26px;font-size:26px;line-height:26px;text-align:center;">♖</div>
+                </td>
+                <td style="padding:0;vertical-align:inherit;height:26px">1</td>
+            </tr>
+            <tr>
+                <td style="vertical-align:inherit;padding:0"></td>
+                <td style="padding:0;vertical-align:inherit;height:18px;width:26px">a</td>
+                <td style="padding:0;vertical-align:inherit;height:18px;width:26px">b</td>
+                <td style="padding:0;vertical-align:inherit;height:18px;width:26px">c</td>
+                <td style="padding:0;vertical-align:inherit;height:18px;width:26px">d</td>
+                <td style="padding:0;vertical-align:inherit;height:18px;width:26px">e</td>
+                <td style="padding:0;vertical-align:inherit;height:18px;width:26px">f</td>
+                <td style="padding:0;vertical-align:inherit;height:18px;width:26px">g</td>
+                <td style="padding:0;vertical-align:inherit;height:18px;width:26px">h</td>
+                <td style="vertical-align:inherit;padding:0"></td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        'use strict';
+
+        function colorChessboard() {
+            const rows = document.querySelectorAll('tr');
+
+            for (let i = 1; i <= 8; i++) {
+                const cells = rows[i].querySelectorAll('td');
+                for (let j = 1; j < 9; j++)
+                    if ((i + j) % 2 === 0)
+                        cells[j].style.backgroundColor = '#ffce9e'; 
+                    else
+                        cells[j].style.backgroundColor = '#d18b47'; 
+            }
+        }
+
+        colorChessboard();
+    </script>
+</body>
+
+</html>
