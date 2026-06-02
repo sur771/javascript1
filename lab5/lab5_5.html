@@ -1,87 +1,88 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
     <meta charset="UTF-8">
     <title>Сообщения</title>
     <style>
-        body {
-            margin: 10px auto;
-            width: 470px;
-        }
-
-        h3 {
-            margin: 0;
-            padding-bottom: .3em;
-            padding-right: 20px;
-            font-size: 1.1em;
-        }
-
-        p {
-            margin: 0;
-            padding: 0 0 .5em;
-        }
-
-        .pane {
-            background: #edf5e1;
-            padding: 10px 20px 10px;
-            border-top: solid 2px #c4df9b;
+        .message {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
             position: relative;
+            background: #f9f9f9;
+            transition: opacity 0.3s ease;
+        }
+        
+        .hidden {
+            display: none;  /* сообщение скрывается, но не удаляется */
         }
 
-        .remove-button {
+        .close-btn {
             position: absolute;
-            font-size: 110%;
-            top: 0;
+            top: 5px;
+            right: 5px;
+            cursor: pointer;
+            color: red;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 1;
+        }
+        .close-btn:hover {
             color: darkred;
-            right: 10px;
-            display: block;
-            width: 24px;
-            height: 24px;
-            border: none;
-            background: transparent;
+        }
+
+        button {
+            margin-bottom: 20px;
+            padding: 5px 10px;
+            cursor: pointer;
         }
     </style>
 </head>
-
 <body>
+    <h3>Список сообщений</h3>
+    
+    <button id="showAllBtn">Показать все сообщения</button>
 
-    <div id="messages-container">
-        <div class="pane">
-            <h3>Лошадь</h3>
-            <p>Домашняя лошадь — животное семейства непарнокопытных, одомашненный и единственный сохранившийся подвид
-                дикой лошади, вымершей в дикой природе, за исключением небольшой популяции лошади Пржевальского.</p>
-            <button class="remove-button">[x]</button>
-        </div>
-        <div class="pane">
-            <h3>Осёл</h3>
-            <p>Домашний осёл или ишак — одомашненный подвид дикого осла, сыгравший важную историческую роль в развитии
-                хозяйства и культуры человека. Все одомашненные ослы относятся к африканским ослам.</p>
-            <button class="remove-button">[x]</button>
-        </div>
-        <div class="pane">
-            <h3>Корова, а также пара слов о диком быке, о волах и о тёлках. </h3>
-            <p>Коро́ва — самка домашнего быка, одомашненного подвида дикого быка, парнокопытного жвачного животного
-                семейства полорогих. Самцы вида называются быками, молодняк — телятами, кастрированные самцы — волами.
-                Молодых (до первой стельности) самок называют
-                тёлками.
-            </p>
-            <button class="remove-button">[x]</button>
-        </div>
+    <div class="message">
+        <span class="close-btn" title="Скрыть сообщение (не удалять)">&times;</span> 
+        <strong>Лошадь</strong><br>
+        Домашняя лошадь – животное семейства непарнокопытных...
+    </div>
+    <div class="message">
+        <span class="close-btn" title="Скрыть сообщение (не удалять)">&times;</span>
+        <strong>Осёл</strong><br>
+        Домашний осёл или ишак – одомашненный подвид дикого осла...
+    </div>
+    <div class="message">
+        <span class="close-btn" title="Скрыть сообщение (не удалять)">&times;</span>
+        <strong>Корова</strong><br>
+        Корова – самка домашнего быка...
     </div>
 
     <script>
-    'use strict';
+        'use strict';
 
-    const removeButtons = document.querySelectorAll('.remove-button');
-
-    removeButtons.forEach(function (button) {
-        button.addEventListener('click', function () {
-            button.parentNode.remove();
+        // Скрытие сообщений (без удаления)
+        const closeButtons = document.querySelectorAll('.close-btn');
+        
+        closeButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const messageBox = this.closest('.message');
+                if (messageBox) {
+                    // Просто добавляем класс hidden – сообщение скрывается, но остаётся в DOM
+                    messageBox.classList.add('hidden');
+                }
+            });
         });
-    });
-</script>
 
+        // Кнопка для восстановления всех скрытых сообщений (доказывает, что они не удалены)
+        const showAllBtn = document.getElementById('showAllBtn');
+        showAllBtn.addEventListener('click', function() {
+            const allMessages = document.querySelectorAll('.message');
+            allMessages.forEach(msg => {
+                msg.classList.remove('hidden');
+            });
+        });
+    </script>
 </body>
-
 </html>

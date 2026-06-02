@@ -1,75 +1,154 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ввод числа</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 100vh;
-        }
-        h1 {
-            margin-bottom: 10px;
-        }
-        p {
-            margin-bottom: 20px;
-        }
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 28px;
-            background-color: #2c5f8a;
-            color: white;
-            text-decoration: none;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: normal;
-            transition: background-color 0.2s ease;
-        }
-        a:hover {
-            background-color: #1e3e5c;
-        }
-    </style>
-</head>
-<body>
-    <h1>Страница "Ввод числа"</h1>
-    <p>Нажмите на ссылку ниже, чтобы перейти на главную страницу</p>
-    
-    <a href="#" id="numberLink">Получить число</a>
-
+    <title>Тестирование lab3.js</title>
+    <!-- добавим стили mocha для отображения результатов -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
+    <!-- добавляем сам фреймворк mocha -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js"></script>
     <script>
-        "use strict";
-        document.getElementById('numberLink').addEventListener('click', function(event) {
-            event.preventDefault();
-            
-            let number;
-            let link = this.href;
-            
-            while (true) {
-                number = prompt("Пожалуйста, введите число больше 100:", "");
-                
-                if (number === null) {
-                    if (confirm("Вы не ввели число. Хотите продолжить переход?")) {
-                        window.location.href = link;
-                    }
-                    return;
-                }
-                if (!isNaN(number) && Number(number) > 100) {
-                    window.location.href = link;
-                    return;
-                }
-                
-                alert("Нужно ввести число больше 100!");
-            }
+        // включаем режим тестирования в стиле BDD
+        mocha.setup('bdd');
+    </script>
+    <!-- добавим chai -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
+    <script>
+        // chai предоставляет большое количество функций. Объявим assert глобально
+        let assert = chai.assert;
+    </script>
+</head>
+
+<body>
+    <!-- скрипт со спецификацией -->
+    <script type="module">
+        import {
+            getDecimal,
+            normalizeUrl,
+            checkSpam,
+            truncate,
+            camelize,
+            fibs,
+            arrReverseSorted,
+            unique
+        } from './lab3.js';
+
+        describe("getDecimal", function () {
+
+            it("getDecimal(1.23) => 0.23", function () {
+                assert.strictEqual(getDecimal(1.23), 0.23);
+            });
+
+            it("getDecimal(-1.23) => 0.77", function () {
+                assert.strictEqual(getDecimal(-1.23), 0.77);
+            });
+
+            it("getDecimal(1) => 0", function () {
+                assert.strictEqual(getDecimal(1), 0);
+            });
+
         });
+
+        describe("normalizeUrl", function () {
+
+            it("normalizeUrl('yandex.ru') => 'https://yandex.ru'", function () {
+                assert.strictEqual(normalizeUrl('yandex.ru'), 'https://yandex.ru');
+            });
+
+            it("normalizeUrl('http://yandex.ru') => 'https://yandex.ru'", function () {
+                assert.strictEqual(normalizeUrl('http://yandex.ru'), 'https://yandex.ru');
+            });
+
+            it("normalizeUrl('https://yandex.ru') => 'https://yandex.ru'", function () {
+                assert.strictEqual(normalizeUrl('https://yandex.ru'), 'https://yandex.ru');
+            });
+
+            it("normalizeUrl('https.ru') => 'https://https.ru'", function () {
+                assert.strictEqual(normalizeUrl('https.ru'), 'https://https.ru');
+            });
+
+        });
+
+        describe("checkSpam", function () {
+
+            it("checkSpam('_XxX_') => true", function () {
+                assert.strictEqual(checkSpam('_XxX_'), true);
+            });
+
+            it("checkSpam('__Viagra__') => true", function () {
+                assert.strictEqual(checkSpam('__Viagra__'), true);
+            });
+
+            it("checkSpam('test') => false", function () {
+                assert.strictEqual(checkSpam('test'), false);
+            });
+
+        });
+
+        describe("truncate", function () {
+
+            it("truncate('Мама мыла раму.', 100) => 'Мама мыла раму.'", function () {
+                assert.strictEqual(truncate('Мама мыла раму.', 100), 'Мама мыла раму.');
+            });
+
+            it("truncate('Мама мыла раму.', 10) => 'Мама мыла…'", function () {
+                assert.strictEqual(truncate('Мама мыла раму.', 10), 'Мама мыла…');
+            });
+
+        });
+
+        describe("camelize", function () {
+
+            it("camelize('var-test-text') => 'varTestText'", function () {
+                assert.strictEqual(camelize('var-test-text'), 'varTestText');
+            });
+
+            it("camelize('person__eye--blue') => 'person__eyeBlue'", function () {
+                assert.strictEqual(camelize('person__eye--blue'), 'person__eyeBlue');
+            });
+
+        });
+
+        describe("fibs", function () {
+
+            it("fibs(5) => [0n, 1n, 1n, 2n, 3n]", function () {
+                assert.deepEqual(fibs(5), [0n, 1n, 1n, 2n, 3n]);
+            });
+
+        });
+
+        describe("arrReverseSorted", function () {
+
+            it("arrReverseSorted([1, 3, 22]) => [22, 3, 1]", function () {
+                assert.deepEqual(arrReverseSorted([1, 3, 22]), [22, 3, 1]);
+            });
+
+        });
+
+        describe("unique", function () {
+
+            it("unique([0, 1, 1, 2]) => [0, 1, 2]", function () {
+                assert.deepEqual(unique([0, 1, 1, 2]), [0, 1, 2]);
+            });
+
+            it("unique(['a', 'b', 'c', 'c']) => ['a', 'b', 'c']", function () {
+                assert.deepEqual(unique(['a', 'b', 'c', 'c']), ['a', 'b', 'c']);
+            });
+
+        });
+
+    </script>
+
+    <!-- элемент с id="mocha" будет содержать результаты тестов -->
+    <div id="mocha"></div>
+
+    <!-- запускаем тесты! -->
+    <script>
+        window.onload = () => mocha.run();
     </script>
 </body>
+
 </html>

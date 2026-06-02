@@ -1,48 +1,40 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Список из объекта</title>
+    <title>Дерево с точками</title>
     <style>
-        li {
-            margin: 5px 0;
+        body { font-family: sans-serif; padding: 20px; }
+        
+        ul { 
+            list-style-type: disc; /* Точки */
+            padding-left: 20px; 
+        }
+        
+        li { 
+            margin: 5px 0; 
+        }
+
+        .node-text {
+            cursor: pointer;
+            color: #333;
+        }
+        .node-text:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        li.closed > ul {
+            display: none;
         }
     </style>
 </head>
-
 <body>
+    <h1>Дерево</h1>
     <div id="container"></div>
 
     <script>
         'use strict';
-
-        function createTree(container, data) {
-
-            function createTreeDom(obj) {
-
-                if (!Object.keys(obj).length) 
-                    return null;
-
-                let ul = document.createElement('ul');
-                for (let key in obj) {
-                    let li = document.createElement('li');
-                    li.textContent = key;
-
-                    let childrenUl = createTreeDom(obj[key]);
-                    if (childrenUl)
-                        li.appendChild(childrenUl);
-
-                    ul.appendChild(li);
-                }
-
-                return ul;
-            }
-
-            container.innerHTML = '';
-            container.appendChild(createTreeDom(data));
-        }
 
         let data = {
             "Рыбы": {
@@ -61,12 +53,41 @@
             }
         };
 
-        document.addEventListener("DOMContentLoaded", function () {
-            let container = document.getElementById('container');
-            createTree(container, data);
-        });
+        function createTree(container, data) {
+            const ul = document.createElement('ul');
+            
+            for (let key in data) {
+                const li = document.createElement('li');
+                
+                const span = document.createElement('span');
+                span.textContent = key;
+                span.classList.add('node-text');
+                li.appendChild(span);
 
+                const children = data[key];
+                const hasChildren = Object.keys(children).length > 0;
+
+                if (hasChildren) {
+                    createTree(li, children);
+
+                    span.addEventListener('click', function(e) {
+                        e.preventDefault(); 
+                        li.classList.toggle('closed');
+                    });
+                } else {
+
+                    span.style.cursor = 'default';
+                    span.onclick = null;
+                }
+                
+                ul.appendChild(li);
+            }
+            
+            container.appendChild(ul);
+        }
+
+        const container = document.getElementById('container');
+        createTree(container, data);
     </script>
 </body>
-
 </html>

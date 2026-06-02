@@ -1,97 +1,101 @@
 'use strict';
 
+import {
+    fib
+  } from './fun.js';
+
 /**
- * Возвращает x, возведённое в n-ную степень.
- * @param {number} x Возводимое в степень число.
- * @param {number} n Степень, должна быть натуральным числом.
- * @return {number} x, возведённое в n-ную степень.
+ * Возвращает дробную часть числа.
+ * @param {number} num - Число.
+ * @returns {number} Дробная часть числа.
  */
-function pow(x, n) {
-  if (n === 0) return 1;
-  if (n < 0) return 1 / pow(x, -n);
-  return x * pow(x, n - 1);
+export function getDecimal(num) {
+
+    return +(num >= 0 ? num % 1 : 1 + (num % 1)).toFixed(2);
+}
+
+
+/**
+ * Нормализует URL, добавляя https://.
+ * @param {string} url - Адрес сайта.
+ * @returns {string} Нормализованный URL.
+ */
+export function normalizeUrl(url) {
+    if (!url.startsWith("http://") && !url.startsWith("https://"))
+        return "https://" + url;
+
+    return url.replace("http://", "https://");
+}
+
+
+/**
+ * Проверяет наличие спама в строке.
+ * @param {string} str - Входная строка.
+ * @returns {boolean} true, если строка содержит спам, иначе false.
+ */
+export function checkSpam(str) {
+    const lowerStr = str.toLowerCase();
+    return lowerStr.includes('viagra') || lowerStr.includes('xxx');
+}
+
+
+/**
+ * Усекает строку до указанной длины и добавляет многоточие, если необходимо.
+ * @param {string} str - Входная строка.
+ * @param {number} maxlength - Максимальная длина строки.
+ * @returns {string} Усеченная строка.
+ */
+export function truncate(str, maxlength) {
+    if (str.length > maxlength)
+        return str.slice(0, maxlength - 1) + "…";
+
+    return str;
 }
 
 /**
- * Возвращает сумму чисел от 1 до n,
- * используя арифметическую прогрессию
- * @param {number} n число, по которое ищется сумма
- * @return {number} сумма чисел от 1 до n
+ * Преобразует строку вида 'var-test-text' в 'varTestText'.
+ * @param {string} str - Входная строка.
+ * @returns {string} Преобразованная строка.
  */
-const sumToNewFunc = new Function('n', `
-  if (typeof n !== 'number' || n <= 0) {
-    return 0;
-  }
-  return (n * (n + 1)) / 2;
-`);
+export function camelize(str) {
+    return str.split('-').map((word, index) => {
+        if (index === 0)
+            return word;
 
-/**
- * Проверяет год на високосность
- * @param {number} year год, который нужно проверить, натуральное число
- * @return {boolean} true, если год високосный, иначе - false.
- */
-function isLeapYear(year) {
-  return (year % 400 === 0) || (year % 4 === 0 && year % 100 !== 0);
+        return word ? word[0].toUpperCase() + word.slice(1) : '';
+    }).join('');
 }
 
 /**
- * Возвращает факториал числа n.
- * @param {number} n число, для которого находится факториал
- * @return {BigInt} факториал числа n!
+ * Возвращает массив чисел Фибоначчи до указанного числа n.
+ * @param {number} n - Число Фибоначчи.
+ * @returns {Array<BigInt>} Массив чисел Фибоначчи.
  */
-function factorial(n) {
-  if (n === 0)
-    return 1n;
-  return BigInt(n) * factorial(n - 1);
+export function fibs(n) {
+    let arr = [];
+    for (let i = 0; i < n; i++) arr.push(fib(i));
+    return arr;
 }
+
 
 /**
- * Возвращает n-ое число Фибоначчи.
- * @param {number} n номер искомого числа Фибоначчи
- * @return {BigInt} n-oe число Фибоначчи
+ * Возвращает массив, отсортированный по убыванию.
+ * @param {Array<number>} arr - Входной массив.
+ * @returns {Array<number>} Отсортированный массив по убыванию.
  */
-function fib(n) {
-  let a = 0n;
-  let b = 1n;
-  for (let i = 0; i < n; i++) {
-    let temp = b;
-    b = a + b;
-    a = temp;
-  }
-  return a;
+export function arrReverseSorted(arr) {
+    return arr.slice().sort((a, b) => b - a);
 }
+
 
 /**
- * Возвращает функцию для сравнения переданного значения с x.
- * @param {number} x значение, с которым будет сравниваться аргумент возвращаемой функции
- * @return {function(number): (boolean|null)} функция, принимающая y и возвращающая:
- *   true, если y > x;
- *   false, если y < x;
- *   null, если y === x.
+ * Возвращает массив уникальных значений.
+ * @template T
+ * @param {Array<T>} arr - Входной массив.
+ * @returns {Array<T>} Массив уникальных значений.
  */
-function compare(x) {
-  return function (y) {
-    return y > x ? true : y < x ? false : null;
-  };
+export function unique(arr) {
+    return [...new Set(arr)];
 }
 
-/**
- * Возвращает сумму всех аргументов.
- * @param {...number} args - Аргументы для суммирования.
- * @return {number} - Сумма всех аргументов.
- */
-function sum(...args) {
-  return args.reduce((acc, curr) => acc + curr, 0);
-}
-
-/**
- * Добавляет свойство с символом 'blackSpot' к объекту.
- * @param {Object} obj Объект, к которому будет добавлено свойство.
- * @return {Object} Объект с добавленным свойством 'blackSpot'.
- */
-function addBlackSpot(obj) {
-  obj[Symbol.for('blackSpot')] = true;
-  return obj;
-}
-
-export { fib };
+//module.exports = { getDecimal, normalizeUrl, checkSpam, truncate, camelize, fibs, arrReverseSorted, unique };
