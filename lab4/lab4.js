@@ -6,11 +6,12 @@ export class Book {
     #price;
     
 /**
-*Создаёт книгу
-*@param {string} title Название книги.
-*@param {number} pubYear Год издания.
-*@param{number} price Цена книги.
-*/
+ * Создает экземпляр книги.
+ * 
+ * @param {string} title - Название книги.
+ * @param {number} pubYear - Год публикации.
+ * @param {number} price - Стоимость книги.
+ */
     
     constructor(title, pubYear, price) {
         this.title = title;
@@ -63,7 +64,7 @@ export class Book {
  * Сравнивает книги по году издания.
  * @param {Book} a Первая книга.
  * @param {Book} b Вторая книга.
- * (@returns) {number}
+ * @returns {number}
  */
     
     static compare(a, b) {
@@ -74,7 +75,7 @@ export class Book {
 /**
  * Проверяет, пуст ли объект.
  * @param {Object} obj Проверяемый объект.
- *(@returns) {boolean}
+ *@returns {boolean}
  */
 
 export function isEmpty(obj) {
@@ -84,7 +85,7 @@ export function isEmpty(obj) {
 /**
  * Добавляет объекту методы работы с className.
  * @param {Object} obj Объект.
- * (@returns) {Object}
+ * @returns {Object}
  */
 
 export function addClassMethods(obj) {
@@ -112,7 +113,7 @@ export function addClassMethods(obj) {
 
 /**
  * Возвращает количество секунд с начала текущего дня.
- * (@returns) {number}
+ * @returns {number}
  */
 
 export function getSecondsToday() {
@@ -122,9 +123,10 @@ export function getSecondsToday() {
 }
 
 /**
- * Форматирует дату в строку дд.мм.гг.
- * @param {Date} date Дата.
- * (@returns) {string}
+ * Форматирует объект даты в строку формата DD.MM.YY.
+ *
+ * @param {Date} date - Объект даты для форматирования.
+ * @returns {string} Строка с датой в формате "ДД.ММ.ГГ".
  */
 
 export function formatDate(date) {
