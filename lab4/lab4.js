@@ -1,151 +1,121 @@
+'use strict';
 
-class Book {
+export class Book {
+    _title;
+    _pubYear;
+    #price;
+/**
+*Создаёт книгу
+*@param {string} title Название книги.
+*@param {number} pubYear Год издания.
+*@param{number} price Цена книги.
+*/
     constructor(title, pubYear, price) {
         this.title = title;
         this.pubYear = pubYear;
         this.price = price;
     }
 
-    get title() {
-        return this._title;
+    set title(value) {
+        if (value.trim() === '') {
+            throw new Error('Название книги не может быть пустой строкой');
+        }
+        this._title = value;
     }
 
-    set title(text) {
-        if (typeof text !== 'string' || text.trim() === '') {
-            throw new Error('Title must be a non-empty string.');
-        }
-        this._title = text.trim();
+    get title() {
+        return this._title;
     }
 
     get pubYear() {
         return this._pubYear;
     }
 
-    set pubYear(newPubYear) {
-        if (typeof newPubYear !== 'number' || newPubYear <= 0 || !Number.isInteger(newPubYear)) {
-            throw new Error('pubYear must be a positive integer.');
+    set pubYear(value) {
+        if (typeof value !== 'number' || value <= 0) {
+            throw new Error('Год издания должен быть положительным числом');
         }
-        this._pubYear = newPubYear;
+        this._pubYear = value;
     }
 
     get price() {
-        return this._price;
+        return this.#price;
     }
 
-    set price(newPrice) {
-        if (typeof newPrice !== 'number' || newPrice <= 0) {
-            throw new Error('Price must be a positive number.');
+    set price(value) {
+        if (typeof value !== 'number' || value <= 0) {
+            throw new Error('Цена должна быть положительным числом');
         }
-        this._price = newPrice;
+        this.#price = value;
     }
-
+    /**
+    * Выводит название и цену книги в консоль.
+    */
     show() {
-        console.log(`Название: ${this._title},
-Год публикации: ${this._pubYear},
-Цена: ${this._price}`);
+        console.log(`${this.title}, ${this.#price}`);
     }
-
-    static compare(book1, book2) {
-        return book1.pubYear - book2.pubYear;
+/**
+ * Сравнивает книги по году издания.
+ * @param {Book} a Первая книга.
+ * @param {Book} b Вторая книга.
+ * @id70533735 (@returns) {number}
+ */
+    static compare(a, b) {
+        return a._pubYear - b._pubYear;
     }
 }
-
-try {
-    let book1 = new Book('1984', 1949, 1000);
-    book1.show();
-    book1.price = 1900;
-    book1.show();
-
-    console.log("Цена book1:", book1.price);
-
-    let book2 = new Book('To Kill a Mockingbird', 1960, 890);
-    book2.show();
-    let book3 = new Book('1984', 1949, 250);
-    book3.show();
-
-    let books = [book1, book2, book3];
-    books.sort(Book.compare);
-    console.log("Книги после сортировки по году издания:");
-    for (let i = 0; i < books.length; ++i) {
-        books[i].show();
-    }
-
-
-    function isEmpty(obj) {
-        if (typeof obj !== 'object' || obj === null) return true;
-
-        for (let key in obj) {
-            if (obj.hasOwnProperty(key)) return false;
+/**
+ * Проверяет, пуст ли объект.
+ * @param {Object} obj Проверяемый объект.
+ * @id70533735 (@returns) {boolean}
+ */
+export function isEmpty(obj) {
+    return Reflect.ownKeys(obj).length === 0;
+}
+/**
+ * Добавляет объекту методы работы с className.
+ * @param {Object} obj Объект.
+ * @id70533735 (@returns) {Object}
+ */
+export function addClassMethods(obj) {
+    obj.addClass = function(cls) {
+        const classes = this.className ? this.className.split(' ') : [];
+        if (!classes.includes(cls)) {
+            classes.push(cls);
+            this.className = classes.join(' ');
         }
-        return Object.getOwnPropertySymbols(obj).length === 0;
-    }
-
-    let obj1 = { [Symbol()]: true };
-    let obj2 = {};
-
-    console.log("Объект 1", isEmpty(obj1));
-    console.log("Объект 2", isEmpty(obj2));
-
-
-
-    let classObject = {
-        className: "open menu",
-
-        addClass(cls) {
-            let classes = this.className.split(' ');
-            if (!classes.includes(cls)) {
-                this.className += " " + cls;
-            }
-            return this;
-        },
-
-        removeClass(cls) {
-            let classes = this.className.split(' ');
-            let index = classes.indexOf(cls);
-            if (index !== -1) {
-                classes.splice(index, 1);
-                this.className = classes.join(' ');
-            }
-        }
+        return this;
     };
 
-    classObject.addClass('close');
-    console.log("className после addClass('close'):", classObject.className);
+    obj.removeClass = function(cls) {
+        const classes = this.className ? this.className.split(' ') : [];
+        const index = classes.indexOf(cls);
+        if (index !== -1) {
+            classes.splice(index, 1);
+            this.className = classes.join(' ');
+        }
+        return this;
+    };
 
-    classObject.addClass('open');
-    console.log("className после addClass('open'):", classObject.className);
-
-    classObject.removeClass('menu');
-    console.log("className после removeClass('menu'):", classObject.className);
-
-
-    let jsonString = JSON.stringify(classObject, null, 2);
-    console.log("JSON строка:", jsonString);
-
-    let object2 = JSON.parse(jsonString);
-    console.log('Сравнение объектов из JSON:', JSON.stringify(object2) === JSON.stringify(classObject));
-
-
-    function getSecondsToday() {
-        let now = new Date();
-        let start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-        return Math.floor((now - start) / 1000); 
-    }
-
-    console.log("Секунд с начала дня: ", getSecondsToday());
-
-
-    function formatDate(date) {
-        return date.toLocaleDateString();
-    }
-
-    let date1 = new Date(2024, 0, 20); 
-    let date2 = new Date(2000, 11, 1); 
-    let date3 = new Date(1995, 9, 10); 
-
-    console.log("Дата 1:", formatDate(date1));
-    console.log("Дата 2:", formatDate(date2));
-    console.log("Дата 3:", formatDate(date3));
-} catch (error) {
-    console.error("Произошла ошибка:", error.message);
+    return obj;
+}
+/**
+ * Возвращает количество секунд с начала текущего дня.
+ * @id70533735 (@returns) {number}
+ */
+export function getSecondsToday() {
+    const now = new Date();
+    const start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    return Math.floor((now - start) / 1000);
+}
+/**
+ * Форматирует дату в строку дд.мм.гг.
+ * @param {Date} date Дата.
+ * @id70533735 (@returns) {string}
+ */
+export function formatDate(date) {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = String(date.getFullYear()).slice(-2);
+    return `${day}.${month}.${year}`;
 }
